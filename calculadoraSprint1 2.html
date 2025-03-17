@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="icon" href="airguard_logo.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<style>
+    body{
+        font-family: Arial;
+    }
+    h1{
+        text-align: center;
+        width: 370px;
+        color: #048abf;
+    }
+    h2{
+        text-align: center;
+        width: 470px;
+        color: #048abf;
+    }
+    p{
+        margin-top: -1px;
+        text-align: center;
+        
+    }
+    main{
+        font-size: large;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 0 100px;
+    }
+    button{
+        font-size: large;
+        width: 100px;
+        height: 35px;
+        border-radius: 15px;
+        box-shadow: none;
+        background-color: #048abf;
+        color: white;
+        transition: all 0.3s ease-in-out;
+        border-style: none;
+    }
+    button:hover{
+        border-color: #048abf;
+        border: solid;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        background-color: white;
+        color: #048abf;
+    }
+    input{
+       height: 25px;
+       border: solid 2px;
+       border-radius: 10px;
+       border-color: #048abf;
+    }
+    input:focus{
+        outline: #048abf;
+    }
+    #Botões{
+        margin-top: -20px;
+    }
+    #texto{
+        margin-top: 15px;
+        border-left: solid 10px;
+        border-radius: 15px;
+        border-color: #048abf;
+        width: 650px;
+        color: #048abf;
+        text-align: center;
+    }
+    .div_calcularTudo{
+        display: flex;
+        align-items: center;
+    }
+    .div_calculadora{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+</style>
+<body>
+    <main>
+            <h1>Você conhece a taxa de absenteísmo?</h1>
+
+    <p>As empresas de metalúrgica sofrem com um dano silencioso, chamado taxa de absenteísmo. Essa taxa se refere a funcionários que ficam ausentes, ou trabalham mal, o que gera um prejuízo para a empresa devido ao fato de que não foi obtido o valor investido no colaborador.</p> <br>
+    <p>Por exemplo, uma empresa grande possui em média 1000 funcionários. Supondo que o salário médio de metalúrgicos é 2500, a empresa acaba gastando 3500 com o funcionário, devido a benefícios, como Vale-Alimentação e Vale-Transporte. Como a taxa de absenteísmo no setor metalúrgico é aproximadamente 6%, é estimado que essa empresa tenha um prejuízo de R$2.520.000 milhões por ano.</p>
+    <div class="div_calcularTudo">
+        <div class="div_calculadora">
+            <h2>Veja o quanto essa empresa poderia economizar utilizando nossos serviços.</h2> 
+            <p>Digite uma área em m² para essa empresa (a partir de 6m²)</p>
+            <input type="number" id="ipt_metros">
+            <br> <br>
+          
+            <br> <br>
+            <div id="Botões"><button onclick="Anual()">Anual</button>
+            <button onclick="Mensal()">Semestral</button></div>
+            
+            <h2 id="titulo"></h2>
+            <div id="texto"></div>
+        </div>
+        <div class="div_calculadora">
+            <h2>Veja o quanto essa empresa poderia economizar utilizando nossos serviços.</h2> 
+            <p>Digite uma área em m² para essa empresa (a partir de 6m²)</p>
+            <input type="number" id="ipt_metros">
+            <br> <br>
+            <p>Digite a quantidade de funcionários na sua empresa</p>
+            <input type="number" id="ipt_funcionarios">
+            <br> <br>
+            <div id="Botões"><button onclick="Anual()">Anual</button>
+            <button onclick="Mensal()">Semestral</button></div>
+            
+            <h2 id="titulo"></h2>
+            <div id="texto"></div>
+        </div>
+    </div>
+
+    </main>
+
+</body>
+</html>
+<script>
+    function Anual(){
+        var metros = Number(ipt_metros.value);
+        var qtdSensores = metros / 6;
+        var sensores = qtdSensores*100;
+        var valor_final_sensor = (sensores*1.1)
+        var manutencao = valor_final_sensor * 0.1;
+        var instalacao = (valor_final_sensor * 0.1);
+
+
+        if (qtdSensores >= 10 && qtdSensores <= 30) {
+            instalacao = valor_final_sensor * 0.20;
+        }
+        else if (qtdSensores > 30 && qtdSensores <= 50){
+            instalacao = valor_final_sensor * 0.15;
+        }
+        else if (qtdSensores > 50){
+            instalacao = valor_final_sensor * 0.05;
+        }
+
+        var valorMensal = (valor_final_sensor + manutencao + instalacao) * 0.90;
+        var valorAnual = valorMensal*12;
+        var funcionarios = Number(ipt_funcionarios.value)
+        var salario = 3500
+        var prejuizo = ((funcionarios * salario)*12)*0.06
+        var economia = prejuizo / 2
+
+        if(metros<=6){
+            texto.innerHTML = `O número ${metros} não é valido, por favor insira um valor válido será apenas aceito valores apartir de 6` 
+        }
+        else if(metros ==" "){
+            texto.innerHTML = `Por favor insira um valor válido nos metros, será apenas aceito valores apartir de 6` 
+        }
+        else{
+            titulo.innerHTML =`Lucros`
+            texto.innerHTML = `Com um investimento de apenas R$${valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
+             mensais, diminuiríamos a taxa de absenteísmo para 3%, diminuindo o prejuízo de R$${prejuizo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} pela metade.
+             <br> Totalizando R$${economia.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} de economia ao ano.
+             <br> Nosso serviço totaliza R$${valorAnual.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} por ano. 
+             <br> A quantidade total de sensores será de: ${Math.round(qtdSensores).toLocaleString('pt-BR')}`;
+        }
+    }
+
+    function Mensal(){
+        var metros = Number(ipt_metros.value);
+        var qtdSensores = metros / 6;
+        var sensores = qtdSensores*100;
+        var valor_final_sensor = (sensores*0.1) + sensores;
+        var manutencao = valor_final_sensor * 0.10;
+        
+        var instalacao = valor_final_sensor * 0.1;
+
+        if (qtdSensores >= 10 && qtdSensores <= 30) {
+            instalacao = valor_final_sensor * 0.50;
+        }
+        else if (qtdSensores > 30 && qtdSensores <= 50){
+            instalacao = valor_final_sensor * 0.45;
+        }
+        else if (qtdSensores > 50){
+            instalacao = valor_final_sensor * 0.40;
+        }
+
+        var valorMensal = valor_final_sensor + manutencao + instalacao;
+        var valorSemestral = valorMensal*6;
+        var funcionarios = Number(ipt_funcionarios.value)
+        var salario = 3500
+        var prejuizo = ((funcionarios * salario)*12)*0.06
+        var economia = prejuizo / 2
+
+        if(metros<=6){
+         texto.innerHTML = `O número ${metros} não é valido, por favor insira um valor válido será apenas aceito valores apartir de 100` 
+        } 
+        else if(metros ==" "){
+         texto.innerHTML = `Por favor insira um valor válido nos metros, será apenas aceito valores apartir de 100` 
+        }
+        else{
+            texto.innerHTML = `Com um investimento de apenas R$${valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
+             mensais, diminuiríamos a taxa de absenteísmo para 3%, diminuindo o prejuízo de R$${prejuizo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} pela metade. 
+             <br> Se tornando R$${economia.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  de economia ao ano
+             <br> Nosso serciço totaliza R$${valorSemestral.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} por semestre. 
+             <br> A quantidade total de sensores será de: ${Math.round(qtdSensores).toLocaleString('pt-BR')}`;
+        }
+    }
+
+</script>
