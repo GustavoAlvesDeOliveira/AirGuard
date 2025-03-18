@@ -8,26 +8,26 @@
 </head>
 <style>
     body{
-        font-family: Arial;
+        font-family: Arial; /*Tipo de fonte utilizada*/
     }
     h1{
         text-align: center;
-        width: 370px;
+        width: 370px;           /*Alinhando os h1's ao centro, selecionando cor e tamanho em pixels */
         color: #048abf;
     }
-    h2{
+    h2{ 
         text-align: center;
-        width: 470px;
+        width: 470px;           /*Alinhando os h2's ao centro, selecionando a cor e tamanho em pixels */
         color: #048abf;
     }
     p{
-        margin-top: -1px;
+        margin-top: -1px;       /*Alinhando p's ao topo, e centralizando o texto */
         text-align: center;
         
     }
     main{
         font-size: large;
-        display: flex;
+        display: flex;          /*Tamanho da fonte do código, alinhando items ao centro e em coluna*/
         align-items: center;
         flex-direction: column;
         margin: 0 100px;
@@ -36,7 +36,7 @@
         font-size: large;
         width: 100px;
         height: 35px;
-        border-radius: 15px;
+        border-radius: 15px;    /*Estilização do botão, com bordars, tamanho e cor*/
         box-shadow: none;
         background-color: #048abf;
         color: white;
@@ -47,28 +47,28 @@
         border-color: #048abf;
         border: solid;
         transition: background-color 0.3s ease, color 0.3s ease;
-        background-color: white;
+        background-color: white;        /*Mudança de estilo quando se passa o mouse em cima do botão*/
         color: #048abf;
     }
     input{
-       height: 25px;
-       border: solid 2px;
+       height: 25px;                /*Estilização dos inputs*/
+       border: solid 2px;       
        border-radius: 10px;
        border-color: #048abf;
     }
-    input:focus{
+    input:focus{               /*Estilização quando se digita no input*/ 
         outline: #048abf;
     }
     #Botões{
-        margin-top: -20px;
+        margin-top: -20px;      /*Posição do botão*/
     }
     #div_texto2{
         border-right: solid 10px;
         border-radius: 15px;
     }
     #div_texto1{
-        border-left: solid 10px;
-        border-radius: 15px;
+        border-left: solid 10px;                                    
+        border-radius: 15px;                                /*Estilização dos textos gerais.*/
     }
     #div_texto1, #div_texto2, #div_texto3, #div_texto4{
         width: 500px;
@@ -91,7 +91,7 @@
     select{
         font-size: large;
         border-color: #048abf;
-        border-radius: 5px;
+        border-radius: 5px;                 /*Estilização das options.*/
         background-color: aliceblue;
         color:#048abf;
     }
@@ -99,7 +99,7 @@
 </style>
 <body>
     <main>
-        <h1>Você conhece a taxa de absenteísmo?</h1>
+        <h1>Você conhece a taxa de absenteísmo?</h1> <!--Títulos e textos -->
         <p>As empresas de metalúrgica sofrem com um dano silencioso, chamado taxa de absenteísmo. Essa taxa se refere a funcionários que ficam ausentes, ou trabalham mal, o que gera um prejuízo para a empresa devido ao fato de que não foi obtido o valor investido no colaborador.</p>
         <p>Por exemplo, uma empresa de porte médio possui em média 1000 funcionários. Supondo que o salário médio de metalúrgicos é 2500, a empresa acaba gastando 3500 com o funcionário, devido a benefícios, como Vale-Alimentação e Vale-Transporte. Como a taxa de absenteísmo no setor metalúrgico é aproximadamente 6%, é estimado que essa empresa tenha um prejuízo de R$2.520.000 milhões por ano.</p>
     <!-- Div para separar as duas calculadoras -->
@@ -108,21 +108,22 @@
             <div class="div_calculadora">
                 <h2>Veja o quanto essa empresa poderia economizar utilizando nossos serviços.</h2> 
                 <p>Digite uma área em m² para essa empresa (a partir de 6m²)</p>
-                <input type="number" id="ipt_empresaFicticia">
+                <input type="number" id="ipt_empresaFicticia">  <!-- Calculadora para a empresa do case acima-->
                 <br>
                 <p>Selecione um porte para a empresa ficticia</p>
                  <select id="slc_porte">
-                    <option value="100">Porte Pequeno</option>
+                    <option value="100">Porte Pequeno</option>  <!--Criação de options para usuário selecionar 
+                                                                                        o porte da empresa-->
                     <option value="1000">Porte Medio</option>
                     <option value="5000">Porte Grande</option>
                 </select>
                 <br><br>
                
                 <div id="Botões">
-                <button onclick="AnualFicticio()">Anual</button>
+                <button onclick="AnualFicticio()">Anual</button> <!--Botões -->
                 <button onclick="MensalFicticio()">Semestral</button></div>
                 
-                <h2 id="div_titulo1"></h2>
+                <h2 id="div_titulo1"></h2>   <!--Divs de exibição-->
                 <div id="div_texto1"></div>
                 <div id="div_texto4"></div>
             </div>
@@ -150,13 +151,13 @@
 </html>
 <script>
     function AnualFicticio(){
-        var metros = Number(ipt_empresaFicticia.value);
-        var qtdSensores = metros / 6;
-        var sensores = qtdSensores*100;
-        var valor_final_sensor = (sensores*1.1)
-        var manutencao = valor_final_sensor * 0.1;
-        var instalacao = (valor_final_sensor * 0.1);
-
+        var metros = Number(ipt_empresaFicticia.value); // Convertendo os inputs para número
+        var qtdSensores = metros / 6;  // Calculando a quantidade necessária de sensores por metro quadrado.
+        var sensores = qtdSensores*100; // Preço base dos sensores
+        var valor_final_sensor = (sensores*1.1) //Preço que cobramos em cima de cada sensor
+        var manutencao = valor_final_sensor * 0.1; //Preço da manutenção 
+        var instalacao = (valor_final_sensor * 0.1); //Preço da instalação
+ 
 //adição de desconto conforme a quantidade de sensores
         if (qtdSensores >= 10 && qtdSensores <= 30) {
             instalacao = valor_final_sensor * 0.20;
@@ -168,19 +169,21 @@
             instalacao = valor_final_sensor * 0.05;
         }
 //Relação com a taxa de absenteismo
-        var valorMensal = (valor_final_sensor + manutencao + instalacao) * 0.90;
-        var valorAnual = valorMensal*12;
-        var funcionarios = Number(slc_porte.value);
-        var salario = 3500;
-        var prejuizo = ((funcionarios * salario)*12)*0.06;
-        var economia = prejuizo / 2
+        var valorMensal = (valor_final_sensor + manutencao + instalacao) * 0.90; // Soma de todas as despesas com um desconto de 10%
+        var valorAnual = valorMensal*12; 
+        var funcionarios = Number(slc_porte.value); //Quantidade de funcionários
+        var salario = 3500; //Salário Médio
+        var prejuizo = ((funcionarios * salario)*12)*0.06; //Quanto a empresa perde com o absenteísmo
+        var economia = prejuizo / 2 //Nosso objetivo: cortar pela metade a taxa de absenteísmo
 
-        if(metros<6){
+        //Validações dos inputs
+        if(metros<6){ 
             div_texto1.innerHTML = `O número ${metros} não é valido, por favor insira um valor válido será apenas aceito valores apartir de 6` 
         }
         else if(metros ==" "){
             div_texto1.innerHTML = `Por favor insira um valor válido nos metros, será apenas aceito valores apartir de 6` 
         }
+        //Exibição dos resultados, formatando com toFixed.
         else{
             div_titulo1.innerHTML =`Lucros`
             div_texto1.innerHTML = `Com um investimento mensal de apenas R$${valorMensal.toFixed(2)}, diminuiríamos a taxa de absenteísmo para 3%, cortando o prejuízo de R$${prejuizo.toFixed(2)} ao ano pela metade.
