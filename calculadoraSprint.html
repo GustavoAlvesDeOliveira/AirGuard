@@ -89,7 +89,7 @@
         justify-content: center;
     }
     select{
-        font-size: medium;
+        font-size: large;
         border-color: #048abf;
         border-radius: 5px;
         background-color: aliceblue;
@@ -101,7 +101,7 @@
     <main>
         <h1>Você conhece a taxa de absenteísmo?</h1>
         <p>As empresas de metalúrgica sofrem com um dano silencioso, chamado taxa de absenteísmo. Essa taxa se refere a funcionários que ficam ausentes, ou trabalham mal, o que gera um prejuízo para a empresa devido ao fato de que não foi obtido o valor investido no colaborador.</p>
-        <p>Por exemplo, uma empresa grande possui em média 1000 funcionários. Supondo que o salário médio de metalúrgicos é 2500, a empresa acaba gastando 3500 com o funcionário, devido a benefícios, como Vale-Alimentação e Vale-Transporte. Como a taxa de absenteísmo no setor metalúrgico é aproximadamente 6%, é estimado que essa empresa tenha um prejuízo de R$2.520.000 milhões por ano.</p>
+        <p>Por exemplo, uma empresa de porte médio possui em média 1000 funcionários. Supondo que o salário médio de metalúrgicos é 2500, a empresa acaba gastando 3500 com o funcionário, devido a benefícios, como Vale-Alimentação e Vale-Transporte. Como a taxa de absenteísmo no setor metalúrgico é aproximadamente 6%, é estimado que essa empresa tenha um prejuízo de R$2.520.000 milhões por ano.</p>
     <!-- Div para separar as duas calculadoras -->
         <div class="div_calcularTudo">
             <!-- Div para separar uma calculadora da outra esta sendo a da esquerda-->
@@ -175,7 +175,7 @@
         var prejuizo = ((funcionarios * salario)*12)*0.06;
         var economia = prejuizo / 2
 
-        if(metros<=6){
+        if(metros<6){
             div_texto1.innerHTML = `O número ${metros} não é valido, por favor insira um valor válido será apenas aceito valores apartir de 6` 
         }
         else if(metros ==" "){
@@ -183,10 +183,10 @@
         }
         else{
             div_titulo1.innerHTML =`Lucros`
-            div_texto1.innerHTML = `Com um investimento mensal de apenas R$${valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}, diminuiríamos a taxa de absenteísmo para 3%, diminuindo o prejuízo de R$${prejuizo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ao ano pela metade.
-             <br> Totalizando R$${economia.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} de economia anual.
-             <br> Nossos serviços sairiam por R$${valorAnual.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} por ano. 
-             <br> A quantidade total de sensores seria de: ${Math.round(qtdSensores).toLocaleString('pt-BR')}`;
+            div_texto1.innerHTML = `Com um investimento mensal de apenas R$${valorMensal.toFixed(2)}, diminuiríamos a taxa de absenteísmo para 3%, cortando o prejuízo de R$${prejuizo.toFixed(2)} ao ano pela metade.
+             <br> Totalizando R$${economia.toFixed(2)} de economia anual.
+             <br> Nossos serviços sairiam por R$${valorAnual.toFixed(2)} por ano. 
+             <br> A quantidade total de sensores seria de: ${qtdSensores.toFixed(0)}`
         }
     }
 
@@ -219,15 +219,15 @@
         var prejuizo = ((funcionarios * salario)*12)*0.06
         var economia = prejuizo / 2
 
-        if(metros<=6 || metros ==" " || funcionarios==0 || funcionarios ==" "){
+        if(metros<6 || metros ==" " || funcionarios==0 || funcionarios ==" "){
          div_texto1.innerHTML = `O número ${metros} não é valido, por favor insira um valor válido será apenas aceito valores apartir de 6`
         } 
         else{
-            div_texto1.innerHTML = `Com um investimento de apenas R$${valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
-             mensais, diminuiríamos a taxa de absenteísmo para 3%, diminuindo o prejuízo de R$${prejuizo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} pela metade. 
-             <br> Se tornando R$${economia.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}  de economia ao ano
-             <br> Nosso serciço totaliza R$${valorSemestral.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} por semestre. 
-             <br> A quantidade total de sensores será de: ${Math.round(qtdSensores).toLocaleString('pt-BR')}`;
+            div_texto1.innerHTML = `Com um investimento de apenas R$${valorMensal.toFixed(2)} 
+             mensais, diminuiríamos a taxa de absenteísmo para 3%, cortando o prejuízo de R$${prejuizo.toFixed(2)} pela metade. 
+             <br> Se tornando R$${economia.toFixed(2)}  de economia ao ano
+             <br> Nosso serciço totaliza R$${valorSemestral.toFixed(2)} por semestre. 
+             <br> A quantidade total de sensores será de: ${qtdSensores.toFixed(0)}`;
         }
     }
 
@@ -241,15 +241,12 @@
         //adição de desconto conforme a quantidade de sensores
         if (qtdSensores >= 10 && qtdSensores <= 30) {
             instalacao = valor_final_sensor * 0.20;
-            div_texto3.innerHTML = `Desconto de 20% aplicado em relação aos sensores`
         }
         else if (qtdSensores > 30 && qtdSensores <= 50){
             instalacao = valor_final_sensor * 0.15;
-            div_texto3.innerHTML = `Desconto de 15% aplicado em relação aos sensores`
         }
         else if (qtdSensores > 50){
             instalacao = valor_final_sensor * 0.05;
-            div_texto3.innerHTML = `Desconto de 05% aplicado em relação aos sensores`
         }
         //Relação com a taxa de absenteismo
         var valorMensal = (valor_final_sensor + manutencao + instalacao) * 0.90;
@@ -259,19 +256,51 @@
         var prejuizo = ((funcionarios * salario)*12)*0.06
         var economia = prejuizo / 2
 
-        if(metros<=6 || metros ==" " || funcionarios==0 || funcionarios ==" "){
+        if(metros<6 || metros ==" " || funcionarios==0 || funcionarios ==" "){
             div_texto2.innerHTML = `O número ${metros} não é valido, por favor insira um valor válido será apenas aceito valores apartir de 6` }
         else{
             div_titulo2.innerHTML =`Lucros`
-        div_texto2.innerHTML = `Com um investimento mensal de apenas R$${valorMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}, diminuiríamos a taxa de absenteísmo para 3%, diminuindo o prejuízo de R$${prejuizo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ao ano pela metade.
-        <br> Totalizando R$${economia.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} de economia anual.
-        <br> Nossos serviços sairiam por R$${valorAnual.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} por ano. 
-        <br> A quantidade total de sensores seria de: ${Math.round(qtdSensores).toLocaleString('pt-BR')}`; 
+        div_texto2.innerHTML = `Com um investimento mensal de apenas R$${valorMensal.toFixed(2)}, diminuiríamos a taxa de absenteísmo para 3%, cortando o prejuízo de R$${prejuizo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ao ano pela metade.
+        <br> Totalizando R$${economia.toFixed(2)} de economia anual.
+        <br> Nossos serviços sairiam por R$${valorAnual.toFixed(2)} por ano. 
+        <br> A quantidade total de sensores seria de: ${qtdSensores.toFixed(0)}`; 
         }
 
 }
 
     function Semestral(){
+        var metros = Number(ipt_metros.value);
+        var qtdSensores = metros / 6;
+        var sensores = qtdSensores*100;
+        var valor_final_sensor = (sensores*1.1)
+        var manutencao = valor_final_sensor * 0.1;
+        var instalacao = (valor_final_sensor * 0.1);
+        //adição de desconto conforme a quantidade de sensores
+        if (qtdSensores >= 10 && qtdSensores <= 30) {
+            instalacao = valor_final_sensor * 0.20;
+        }
+        else if (qtdSensores > 30 && qtdSensores <= 50){
+            instalacao = valor_final_sensor * 0.15;
+        }
+        else if (qtdSensores > 50){
+            instalacao = valor_final_sensor * 0.05;
+        }
+        //Relação com a taxa de absenteismo
+        var valorMensal = (valor_final_sensor + manutencao + instalacao) * 0.90;
+        var valorSemestral = valorMensal*6;
+        var funcionarios = Number(ipt_funcionarios.value);
+        var salario = 3500
+        var prejuizo = ((funcionarios * salario)*12)*0.06
+        var economia = prejuizo / 2
 
+        if(metros<6 || metros ==" " || funcionarios==0 || funcionarios ==" "){
+            div_texto2.innerHTML = `O número ${metros} não é valido, por favor insira um valor válido será apenas aceito valores apartir de 6` }
+        else{
+            div_titulo2.innerHTML =`Lucros`
+        div_texto2.innerHTML = `Com um investimento mensal de apenas R$${valorMensal.toFixed(2)}, diminuiríamos a taxa de absenteísmo para 3%, cortando o prejuízo de R$${prejuizo.toFixed(2)} ao ano pela metade.
+        <br> Totalizando R$${economia.toFixed(2)} de economia anual.
+        <br> Nossos serviços sairiam por R$${valorSemestral.toFixed(2)} por semestre. 
+        <br> A quantidade total de sensores seria de: ${qtdSensores.toFixed(0)}`; 
+        }
     }
 </script>
